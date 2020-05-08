@@ -1,0 +1,34 @@
+chain:
+  producerPrivKey: c4fc484f35479d50b3f9f21dbdf63d466db1f432fa8ea2ad7a4e80bc8cacadcc
+  # 0472379c81971c0eed6c5eedafd02aea935e39c452fa2d18eef81609ef36b8a5f2b81585ecca910476dde240fcaec3481246b42e0959759bcc3aae3606a3667876
+  chainDBPath: /var/data/chain.db
+  trieDBPath: /var/data/trie.db
+  maxCacheSize: 1000
+  gravityChainDB:
+    dbPath: /var/data/poll.db
+    numRetries: 8
+
+actPool:
+  minGasPrice: "0"
+
+consensus:
+  scheme: STANDALONE
+
+blockSync:
+  bufferSize: 400
+  maxRepeat: 3
+  repeatDecayStep: 3
+
+db:
+  splitDBHeight: 900000
+  splitDBSizeMB: 640
+
+log:
+  zap:
+    level: info
+    encoding: json
+    disableStacktrace: true
+    outputPaths: ["stderr", "stdout"]
+    errorOutputPaths: ["stderr"]
+  stderrRedirectFile: /var/log/s.log
+  stdLogRedirect: true

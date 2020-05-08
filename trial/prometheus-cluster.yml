@@ -1,0 +1,40 @@
+global:
+  scrape_interval:     15s # By default, scrape targets every 15 seconds.
+  evaluation_interval: 15s # Evaluate rules every 15 seconds.
+
+  # Attach these extra labels to all timeseries collected by this Prometheus instance.
+  external_labels:
+    monitor: 'iotex-node-monitor'
+
+scrape_configs:
+  - job_name: 'iotex-node1-monitor'
+
+    # Override the global default and scrape targets from this job every 5 seconds.
+    scrape_interval: 5s
+
+    static_configs:
+      - targets: ['iotex-node1:8080']
+
+  - job_name: 'iotex-node2-monitor'
+
+    # Override the global default and scrape targets from this job every 5 seconds.
+    scrape_interval: 5s
+
+    static_configs:
+      - targets: ['iotex-node2:8080']
+
+  - job_name: 'iotex-node3-monitor'
+
+    # Override the global default and scrape targets from this job every 5 seconds.
+    scrape_interval: 5s
+
+    static_configs:
+      - targets: ['iotex-ndoe3:8080']
+        
+  - job_name: 'iotex-node4-monitor'
+
+    # Override the global default and scrape targets from this job every 5 seconds.
+    scrape_interval: 5s
+
+    static_configs:
+      - targets: ['iotex-node4:8080']

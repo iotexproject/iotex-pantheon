@@ -1,0 +1,6 @@
+{
+    "port": 8090,
+    "DBPath": "/data/hightable.db",
+    "vaultAddress": "http://iotex-vault:8200",
+    "validationPrivateKeyFile": "/key/ec256-private.test.pem"
+}

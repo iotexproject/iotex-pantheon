@@ -1,0 +1,155 @@
+version: '2'
+
+services:
+  database:
+    container_name: iotex-db
+    image: ${IOTEX_DB_IMAGE}
+    restart: always
+    ports:
+      - 3306:3306
+      - 33060:33060
+    volumes:
+      - $IOTEX_HOME/data/mysql:/var/lib/mysql:rw
+    environment:
+       MYSQL_ROOT_PASSWORD: ${DB_ROOT_PASSWORD}
+
+  iotex:
+    container_name: iotex
+    image: ${IOTEX_IMAGE}
+    restart: on-failure
+    ports:
+      - 4689:4689
+      - 14014:14014
+    volumes:
+      - $IOTEX_HOME/data/core:/var/data:rw
+      - $IOTEX_HOME/log/core:/var/log:rw
+      - $IOTEX_HOME/etc/core/config.yaml:/etc/iotex/config_override.yaml:ro
+      - $IOTEX_HOME/etc/core/genesis.yaml:/etc/iotex/genesis.yaml:ro
+    environment:
+      CONNECTION_STRING: root:rootuser@tcp(iotex-db:3306)/
+      DB_NAME: analytics
+    links:
+      - database
+    command: iotex-server -config-path=/etc/iotex/config_override.yaml -genesis-path=/etc/iotex/genesis.yaml -plugin=gateway
+
+  monitor:
+    container_name: iotex-monitor
+    image: ${IOTEX_MONITOR_IMAGE}
+    ports:
+      - 3000:3000
+      - 9090:9090
+    volumes:
+      - $IOTEX_HOME/etc/monitor/prometheus.yml:/prometheus/prometheus-2.14.0.linux-amd64/prometheus.yml:ro
+    links:
+      - iotex
+
+  xun-explorer:
+    container_name: iotex-xun-explorer
+    restart: on-failure
+    image: ${IOTEX_XUN_EXPLORER_IMAGE}
+    environment:
+      NODE_CONFIG_ENV: enterprise
+      IOTEX_CORE: http://iotex:14014
+      #IOTEX_CORE: http://iotex-envoy:10000
+      ANALYTICS_API_GATEWAY_URL: http://localhost:8089/query
+      API_GATEWAY_URL: http://localhost:4004/api-gateway/
+      GRAFANA_LINK: http://localhost:3000
+      VAULT_ENDPOINT: http://iotex-vault:8200
+      AUTH_SECRET: something_secret
+      VAULT_KEY: $IOTEX_USER_KEY
+      VAULT_TOKEN: $IOTEX_USER_TOKEN
+      VAULT_ADMIN_POLICY: admin
+      VAULT_REGULAR_POLICY: regular
+      VAULT_ADMIN_GROUP: admin
+      VAULT_REGULAR_GROUP: regular
+      HIGHTABLE_ENDPOINT: http://high-table:8090
+      IOTEX_BRAND: "true"
+    ports:
+      - 4004:4004
+
+  vault:
+    container_name: iotex-vault
+    image: ${IOTEX_VAULT_IMAGE}
+    cap_add:
+      - IPC_LOCK
+    ports:
+      - 8200:8200
+    environment:
+      VAULT_DEV_ROOT_TOKEN_ID: myroot
+      VAULT_LOCAL_CONFIG: '{"backend": {"file": {"path": "/vault/file"}},"default_lease_ttl": "168h","max_lease_ttl": "720h","ui": true,"listener": {"tcp": {"address": "0.0.0.0:8200","tls_disable": 1}}}'
+      VAULT_API_ADDR: http://0.0.0.0:8200
+    volumes:
+      - $IOTEX_HOME/etc/vault:/vault/iotex-policy:ro
+      - $IOTEX_HOME/data/vault:/vault/file:rw
+      - $IOTEX_HOME/log/vault:/vault/logs:rw
+    command: server
+
+  high-table:
+    container_name: iotex-high-table
+    restart: on-failure
+    image: ${IOTEX_HIGH_TABLE_IMAGE}
+    ports:
+      - 8090:8090
+    volumes:
+      - $IOTEX_HOME/data/high-table:/data:rw
+      - $IOTEX_HOME/key/high-table/ec256-private.test.pem:/key/ec256-private.test.pem:ro
+      - $IOTEX_HOME/etc/high-table/high-table.json:/config/high-table.json:ro
+    links:
+      - vault
+      - iotex
+    command: high-table -config-path=/config/high-table.json
+
+  golden-gate:
+    container_name: iotex-golden-gate
+    restart: on-failure
+    image: ${IOTEX_GOLDEN_GATE_IMAGE}
+    ports:
+      - 15015:15015
+    links:
+      - vault
+      - iotex
+    volumes:
+      - $IOTEX_HOME/etc/golden-gate/config.yaml:/config/config.yaml:ro
+    command: golden-gate -config-path=/config/config.yaml
+
+  envoy:
+    container_name: iotex-envoy
+    image: ${IOTEX_ENVOY_IMAGE}
+    ports:
+      - 9901:9901
+      - 10000:10000
+      - 18080:18080
+      - 14689:14689
+    links:
+      - iotex
+      - golden-gate
+    volumes:
+      - $IOTEX_HOME/etc/envoy/envoy.yaml:/config/envoy.yaml:ro
+    command: envoy --v2-config-only -l debug -c /config/envoy.yaml
+
+  election:
+    container_name: iotex-election
+    image: ${IOTEX_ELECTION_IMAGE}
+    volumes:
+      - $IOTEX_HOME/etc/election/config.yaml:/etc/iotex/server.yaml:ro
+    command: iotex-server -config=/etc/iotex/server.yaml
+
+  analytics:
+    container_name: iotex-analytics
+    restart: on-failure
+    image: ${IOTEX_ANALYTICS_IMAGE}
+    ports:
+      - 8089:8089
+    volumes:
+      - $IOTEX_HOME/etc/analytics/config.yaml:/etc/iotex/config_override.yaml:ro
+    environment:
+      CONFIG: /etc/iotex/config_override.yaml
+      CHAIN_ENDPOINT: iotex:14014
+      ELECTION_ENDPOINT: iotex-election:8089
+      CONNECTION_STRING: root:rootuser@tcp(iotex-db:3306)/
+      DB_NAME: analytics
+    links:
+      - iotex
+      - election
+      - database
+    command: iotex-server

@@ -1,0 +1,24 @@
+account:
+  initBalances:
+    io10gj0e8pu6k6xgu2l6p9s8a6jmzwedfytfh4kph: "1000000000000000000000000000"
+blockchain:
+  actionGasLimit: 5000000
+  blockGasLimit: 20000000
+  aleutianHeight: 1
+  beringHeight: 1
+  cookHeight: 1
+  dardanellesHeight: 1
+  daytonaBlockHeight: 1
+  pacificHeight: 1
+  easterHeight: 1
+  blockInterval: 3s
+  timeBasedRotation: true
+  timestamp: 1571036400
+rewarding:
+  blockReward: "0"
+  dardanellesBlockReward: "0"
+  epochReward: "0"
+  aleutianEpochReward: "0"
+  numDelegatesForEpochReward: 0
+  foundationBonus: "0"
+  numDelegatesForFoundationBonus: 0

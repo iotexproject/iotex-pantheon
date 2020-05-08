@@ -1,0 +1,3 @@
+forwardTo: "iotex:14014"
+port: 15015
+validationPublicKeyFile: "./auth/ec256-public.test.pem"

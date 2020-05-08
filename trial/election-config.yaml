@@ -1,0 +1,6 @@
+db:
+  numOfRetries: 8
+  dbPath: /data/election.db
+port: 8089
+enableVoteSync: false
+enableDummyServer: true
