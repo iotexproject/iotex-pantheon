@@ -13,6 +13,7 @@ Trial installer for iotex consortium blockchain. With trial, The chain will be r
 3. Open up a browser to visit http://localhost:4004.
 4. If this is the first time everything is up, you need to select "Don’t have an account? Sign up". 
 5. Search “Initial Root Token” in your terminal to find a string like ```s.brtnkbVTDGzM7uQSRuGa2sVW```, and use it to register a new user and login the system.
+6. If you need advanced monitoring, login http://localhost:3000/login with ```admin/admin``` and configure your own dashboard.
 
 ## Use command line tool
 1. Set command line tool to connect with chain node
