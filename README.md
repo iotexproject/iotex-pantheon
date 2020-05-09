@@ -7,10 +7,12 @@ Trial installer for iotex consortium blockchain. With trial, The chain will be r
                                      configuration file uses the contents of the directory trial.
 
 ## Setup guide
-1. Install Docker if you don't have it
-2. Run: ./setup.sh
-3. Explorer on localhost:4004
-4. Search “Initial Root Token” in terminal, and you can find the vault token for signup new user
+1. Install [Docker](https://docs.docker.com/get-docker/) if not already.
+2. Download/unzip https://github.com/iotexproject/iotex-pantheon/archive/master.zip or ```git clone``` this repo.
+2. Run: ```./setup.sh``` and follow the instructions. Once this script is done, the blockchain backend and frontend should be already up and running. 
+3. Open up a browser to visit http://localhost:4004.
+4. If this is the first time everything is up, you need to select "Don’t have an account? Sign up". 
+5. Search “Initial Root Token” in your terminal to find a string like ```s.brtnkbVTDGzM7uQSRuGa2sVW```, and use it to register a new user and login the system.
 
 ## Use command line tool
 1. Set command line tool to connect with chain node
