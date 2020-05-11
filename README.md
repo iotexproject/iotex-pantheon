@@ -1,5 +1,8 @@
-# iotex-pantheon
-Trial installer for iotex consortium blockchain. With trial, The chain will be running on standalone mode in this setup(one single node produce blocks).
+<p align="center">
+  <img src="https://github.com/iotexproject/iotex-pantheon/blob/master/logo.png" width="480px">
+</p>
+
+Pantheon is the consortium blockchain built with IoTeX techonology. With trial, The chain will be running on standalone mode in this setup(one single node produce blocks).
 
 ## Usage:
     ./setup.sh                     - Use the mirror provided by the official docker hub, and
