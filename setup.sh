@@ -72,6 +72,8 @@ function setVar() {
     COPY="cp -vf"
     DOCKER_PULL_CMD="docker pull"
 
+    RM="sudo rm -rf"
+
     PROJECT_ABS_DIR=$(cd "$(dirname "$0")";pwd)
 
     IOTEX_DOCKER_COMPOSE_DIR=docker-compose
@@ -222,7 +224,7 @@ function startup() {
     pushd $IOTEX_HOME/$IOTEX_DOCKER_COMPOSE_DIR
     docker-compose up -d --no-recreate
     if [ $? -eq 0 ];then
-        echo -e "${YELLOW} To view blockchain explorer, visit: http://localhost:4004/?locale=zh-CN. For first time usage, you will need to create a user ${NC}"
+        echo -e "${YELLOW} To view blockchain explorer, visit: http://localhost:4004. For first time usage, you will need to create a user ${NC}"
         echo ""
         echo -e "${YELLOW} To view blockchain status dashboard, visit: localhost:3000. The default User/Pass: admin/admin.  ${NC}"
     fi
@@ -343,6 +345,26 @@ function initVault() {
     $WHITE_LINE
 }
 
+function cleanAll() {
+    echo -e "$YELLOW Starting clean all containers... $NC"
+    pushd $IOTEX_HOME/$IOTEX_DOCKER_COMPOSE_DIR
+    docker-compose rm -s -f -v
+    popd
+    echo -e "${YELLOW} Done. ${NC}"
+
+    echo -e "${YELLOW} Starting delete all files... ${NC}"
+    if [ "${IOTEX_HOME}X" = "X" ] || [ "${IOTEX_HOME}X" = "/X" ];then
+        echo -e "${RED} \$IOTEX_HOME: ${IOTEX_HOME} is wrong. ${NC}"
+        ## For safe.
+        return
+    fi
+    
+    $RM $IOTEX_HOME
+    echo -e "${YELLOW} Done. ${NC}"
+    
+    popd
+}
+
 function main() {
     checkDockerPermissions
     checkDockerCompose
@@ -352,6 +374,11 @@ function main() {
     determinIotexHome
     confirmEnvironmentVariable
 
+    if [ "$1" = "clean" ];then
+        cleanAll
+        exit 0
+    fi
+    
     determinIotexAnalyticsDatabaseRootPass
 
     makeWorkspace
