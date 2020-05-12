@@ -361,8 +361,6 @@ function cleanAll() {
     
     $RM $IOTEX_HOME
     echo -e "${YELLOW} Done. ${NC}"
-    
-    popd
 }
 
 function main() {

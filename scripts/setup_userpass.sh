@@ -16,7 +16,7 @@
 
 set -e
 
-DOWNLOAD_BASE_URL="https://github.com/iotexproject/installer4b/blob/master/bin"
+DOWNLOAD_BASE_URL="https://github.com/iotexproject/iotex-pantheon/blob/master/bin/"
 RAW_TRUE="raw=true"
 INSTALL_DIRECTORY='/usr/local/bin'
 

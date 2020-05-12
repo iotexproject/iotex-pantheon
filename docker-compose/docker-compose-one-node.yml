@@ -26,7 +26,7 @@ services:
       - $IOTEX_HOME/etc/core/config.yaml:/etc/iotex/config_override.yaml:ro
       - $IOTEX_HOME/etc/core/genesis.yaml:/etc/iotex/genesis.yaml:ro
     environment:
-      CONNECTION_STRING: root:rootuser@tcp(iotex-db:3306)/
+      CONNECTION_STRING: root:${DB_ROOT_PASSWORD}@tcp(iotex-db:3306)/
       DB_NAME: analytics
     links:
       - database
@@ -146,7 +146,7 @@ services:
       CONFIG: /etc/iotex/config_override.yaml
       CHAIN_ENDPOINT: iotex:14014
       ELECTION_ENDPOINT: iotex-election:8089
-      CONNECTION_STRING: root:rootuser@tcp(iotex-db:3306)/
+      CONNECTION_STRING: root:${DB_ROOT_PASSWORD}@tcp(iotex-db:3306)/
       DB_NAME: analytics
     links:
       - iotex
