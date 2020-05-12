@@ -373,7 +373,12 @@ function main() {
     confirmEnvironmentVariable
 
     if [ "$1" = "clean" ];then
-        cleanAll
+        if [ -d $IOTEX_HOME ];then
+            cleanAll
+        else
+            echo -e "${RED} There is no dir $IOTEX_HOME, ignore deletion and exit"
+        fi
+
         exit 0
     fi
     
