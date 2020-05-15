@@ -12,11 +12,22 @@ Pantheon is the consortium blockchain built with IoTeX techonology. With trial, 
 ## Setup guide
 1. Install [Docker](https://docs.docker.com/get-docker/) if not already.
 2. Download/unzip https://github.com/iotexproject/iotex-pantheon/archive/master.zip or ```git clone``` this repo.
-2. Run: ```./setup.sh``` and follow the instructions. Once this script is done, the blockchain backend and frontend should be already up and running. 
-3. Open up a browser to visit http://localhost:4004.
-4. If this is the first time everything is up, you need to select "Don’t have an account? Sign up". 
-5. Search “Initial Root Token” in your terminal to find a string like ```s.brtnkbVTDGzM7uQSRuGa2sVW```, and use it to register a new user and login the system.
-6. If you need advanced monitoring, login http://localhost:3000/login with ```admin/admin``` and configure your own dashboard.
+3. Please make sure your following ports are available to use: 3000, 33306, 4004, 4689, 8089, 8090, 8200, 9090, 9901, 10000, 14014, 14689, 15015, 18080, 33060
+4. Run: ```./setup.sh``` and follow the instructions. Once this script is done, the blockchain backend and frontend should be already up and running. 
+5. Open up a browser to visit http://localhost:4004.
+6. If this is the first time everything is up, you need to select "Don’t have an account? Sign up". 
+7. Search “Initial Root Token” in your terminal to find a string like ```s.brtnkbVTDGzM7uQSRuGa2sVW```, and use it to register a new user and login the system.
+8. If you need advanced monitoring, login http://localhost:3000/login with ```admin/admin``` and configure your own dashboard.
+
+## Access xun-explorer remotely
+If you are accessing explorer not on the mechine where you plan to deploy the iotex-pantheon, please change following entries in ./docker-compose/docker-compose-one-node.yml before you run `setup.sh`:
+```
+      ANALYTICS_API_GATEWAY_URL: http://localhost:8089/query
+      API_GATEWAY_URL: http://localhost:4004/api-gateway/
+      GRAFANA_LINK: http://localhost:3000
+```
+Change from `localhost` to the remote mechine address/ip.
+
 
 ## Use command line tool
 1. Set command line tool to connect with chain node
