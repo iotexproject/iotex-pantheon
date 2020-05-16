@@ -49,7 +49,7 @@ ioctl action deploy -b "0x3838533838f3" -s 4b
 ```
 
 ## Features Compare
-|   | IoTeX Mainnet  | Pantheon Trail  |  Pantheon Production  |
+|   | IoTeX Mainnet  | Pantheon Trial  |  Pantheon Production  |
 |---|---|---|---|
 | Delegate Election | YES | NO | NO |
 | 0 Fee Transction | NO | YES | YES |
