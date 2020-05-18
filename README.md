@@ -8,6 +8,7 @@ Pantheon is the consortium blockchain built with IoTeX techonology. With trial, 
     ./setup.sh                     - Use the mirror provided by the official docker hub, and
                                      the tag of the image is trial to start the service. The
                                      configuration file uses the contents of the directory trial.
+    ./setup.sh clean               - Clean up all iotex pantheon running components
 
 ## Setup guide
 1. Install [Docker](https://docs.docker.com/get-docker/) if not already.
