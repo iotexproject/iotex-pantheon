@@ -20,7 +20,7 @@ Pantheon is the consortium blockchain built with IoTeX techonology. With trial, 
 8. If you need advanced monitoring, login http://localhost:3000/login with ```admin/admin``` and configure your own dashboard.
 9. If you want to restart everything from scratch, run ```./setup.sh clean```.
 
-## Access xun-explorer remotely
+## Access blockchain explorer remotely
 If you are accessing explorer not on the mechine where you plan to deploy the iotex-pantheon, please change following entries in ./docker-compose/docker-compose-one-node.yml before you run `setup.sh`:
 ```
       ANALYTICS_API_GATEWAY_URL: http://localhost:8089/query
