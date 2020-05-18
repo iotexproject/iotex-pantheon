@@ -18,6 +18,7 @@ Pantheon is the consortium blockchain built with IoTeX techonology. With trial, 
 6. If this is the first time everything is up, you need to select "Don’t have an account? Sign up". 
 7. Search “Initial Root Token” in your terminal to find a string like ```s.brtnkbVTDGzM7uQSRuGa2sVW```, and use it to register a new user and login the system.
 8. If you need advanced monitoring, login http://localhost:3000/login with ```admin/admin``` and configure your own dashboard.
+9. If you want to restart everything from scratch, run ```./setup.sh clean```.
 
 ## Access xun-explorer remotely
 If you are accessing explorer not on the mechine where you plan to deploy the iotex-pantheon, please change following entries in ./docker-compose/docker-compose-one-node.yml before you run `setup.sh`:
