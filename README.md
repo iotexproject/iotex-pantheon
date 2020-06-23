@@ -10,7 +10,7 @@ Pantheon is the consortium blockchain built with IoTeX techonology. With trial, 
                                      configuration file uses the contents of the directory trial.
     ./setup.sh clean               - Clean up all iotex pantheon running components
 
-## Setup guide
+## Option 1: Use Your Machine
 1. Install [Docker](https://docs.docker.com/get-docker/) if not already.
 2. Download/unzip https://github.com/iotexproject/iotex-pantheon/archive/master.zip or ```git clone``` this repo.
 3. Please make sure your following ports are available to use: 3000, 33306, 4004, 4689, 8089, 8090, 8200, 9090, 9901, 10000, 14014, 14689, 15015, 18080, 33060
@@ -20,6 +20,14 @@ Pantheon is the consortium blockchain built with IoTeX techonology. With trial, 
 7. Search “Initial Root Token” in your terminal to find a string like ```s.brtnkbVTDGzM7uQSRuGa2sVW```, and use it to register a new user and login the system.
 8. If you need advanced monitoring, login http://localhost:3000/login with ```admin/admin``` and configure your own dashboard.
 9. If you want to restart everything from scratch, run ```./setup.sh clean```.
+
+## Option 2: Use Amazon Machine Images (AMI)
+1. Open the Amazon EC2 console at https://console.aws.amazon.com/ec2/ and switch to region "us-east-2".
+2. In the navigation pane, choose AMIs and choose Public images.
+3. Search for "**pantheon**" and start an instance from it.
+4. Once it is up and running, ssh into the machine and `cd iotexproject/iotex-pantheon; ./setup.sh`
+5. Follow steps 5 - 9 above.
+
 
 ## Access blockchain explorer remotely
 If you are accessing explorer not on the mechine where you plan to deploy the iotex-pantheon, please change following entries in ./docker-compose/docker-compose-one-node.yml before you run `setup.sh`:
