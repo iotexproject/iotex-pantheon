@@ -6,6 +6,8 @@
 #                                     And start them up. The configuration
 #                                     file for the service comes from the trial directory
 #                                     of this project.
+#    ./setup.sh -c                  - Clean the environmen
+#    ./setup.sh -q                  - quick setup, skip the pull stage.
 
 # Colour codes
 YELLOW='\033[0;33m'
@@ -16,6 +18,8 @@ WHITE_LINE="echo"
 
 BRANCH="trial"
 IOTEX_MODE="one-node"
+SKIP_PULL_IMAGE=0
+WANT_CLEAN=0
 
 function usage () {
     echo ' Usage:
@@ -23,6 +27,8 @@ function usage () {
                                      And start them up. The configuration
                                      file for the service comes from the trial directory
                                      of this project.
+    ./setup.sh -c                  - Clean the environmen
+    ./setup.sh -q                  - quick setup, skip the pull stage.
 '
     exit 2
 }
@@ -364,6 +370,18 @@ function cleanAll() {
 }
 
 function main() {
+    while getopts 'cqh' c
+    do
+        case $c in
+            c)
+                WANT_CLEAN=1 ;;
+            q)
+                SKIP_PULL_IMAGE=1 ;;
+            h|*)
+                usage ;;
+        esac
+    done
+
     checkDockerPermissions
     checkDockerCompose
 
@@ -372,13 +390,12 @@ function main() {
     determinIotexHome
     confirmEnvironmentVariable
 
-    if [ "$1" = "clean" ];then
+    if [ $WANT_CLEAN -eq 1 ];then
         if [ -d $IOTEX_HOME ];then
             cleanAll
         else
             echo -e "${RED} There is no dir $IOTEX_HOME, ignore deletion and exit"
         fi
-
         exit 0
     fi
     
@@ -388,9 +405,10 @@ function main() {
 
     copyConfig $BRANCH
 
-    pullImages
-
-    pullTrialImages
+    if [ $SKIP_PULL_IMAGE -eq 0 ];then
+        pullImages
+        pullTrialImages
+    fi
 
     exportAll
 
