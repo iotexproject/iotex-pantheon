@@ -66,8 +66,8 @@ function setVar4Trial() {
     IOTEX_ANALYTICS_IMAGE=iotex/iotex-analytics:trail
     IOTEX_EXPLORER_IMAGE=iotex/iotex-explorer:trail
     IOTEX_XUN_EXPLORER_IMAGE=iotex/xun-explorer:trial
-    IOTEX_HIGH_TABLE_IMAGE=iotex/high-table:trail
-    IOTEX_GOLDEN_GATE_IMAGE=iotex/golden-gate:trail
+    IOTEX_HIGH_TABLE_IMAGE=iotex/high-table:trial
+    IOTEX_GOLDEN_GATE_IMAGE=iotex/golden-gate:trial
 }
 
 function setVar() {
