@@ -2,7 +2,7 @@
   <img src="https://github.com/iotexproject/iotex-pantheon/blob/master/logo.png" width="480px">
 </p>
 
-Pantheon is the consortium blockchain built with IoTeX techonology. With trial, The chain will be running on standalone mode in this setup(one single node produce blocks).
+Pantheon is the consortium blockchain built with IoTeX technology. With the trial, The chain will be running on the standalone mode in this setup(one single node produce blocks).
 
 ## Usage:
     ./setup.sh                     - Use the mirror provided by the official docker hub, and
@@ -22,7 +22,7 @@ Pantheon is the consortium blockchain built with IoTeX techonology. With trial, 
 9. If you want to restart everything from scratch, run ```./setup.sh clean```.
 
 ## Option 2: Use Amazon Machine Images (AMI)
-1. Open the Amazon EC2 console at https://console.aws.amazon.com/ec2/ and switch to region "us-east-2".
+1. Open the Amazon EC2 console at https://console.aws.amazon.com/ec2/ and switch to the region "us-east-2".
 2. In the navigation pane, choose AMIs and choose Public images.
 3. Search for "**pantheon**" and start an instance from it.
 4. Once it is up and running, ssh into the machine and `cd iotexproject/iotex-pantheon; ./setup.sh`
@@ -30,17 +30,17 @@ Pantheon is the consortium blockchain built with IoTeX techonology. With trial, 
 
 
 ## Access blockchain explorer remotely
-If you are accessing explorer not on the mechine where you plan to deploy the iotex-pantheon, please change following entries in ./docker-compose/docker-compose-one-node.yml before you run `setup.sh`:
+If you are accessing explorer not on the machine where you plan to deploy the iotex-pantheon, please change following entries in ./docker-compose/docker-compose-one-node.yml before you run `setup.sh`:
 ```
       ANALYTICS_API_GATEWAY_URL: http://localhost:8089/query
       API_GATEWAY_URL: http://localhost:4004/api-gateway/
       GRAFANA_LINK: http://localhost:3000
 ```
-Change from `localhost` to the remote mechine address/ip.
+Change from `localhost` to the remote machine address/ip.
 
 
-## Use command line tool
-1. Set command line tool to connect with chain node
+## Use the command-line tool
+1. Set command-line tool to connect with chain node
 ```
 ioctl config set endpoint 127.0.0.1:14014 --insecure
 ```
@@ -50,7 +50,7 @@ ioctl config set endpoint 127.0.0.1:14014 --insecure
 ioctl account import key 4b
 ```
 
-3. Now you can make transcation or deploy contract with demo account
+3. Now you can make a transaction or deploy contract with a demo account
 ```
 ioctl action transfer io1gakgrsnsxmg9ed0tlcc2ukxzxdg6v8z2glw82e 10000 -s 4b
 ```
@@ -62,7 +62,7 @@ ioctl action deploy -b "0x3838533838f3" -s 4b
 |   | IoTeX Mainnet  | Pantheon Trial  |  Pantheon Production  |
 |---|---|---|---|
 | Delegate Election | YES | NO | NO |
-| 0 Fee Transction | NO | YES | YES |
+| 0 Fee Transaction | NO | YES | YES |
 | Private Access | NO | YES  | YES |
 | User Management | NO | YES  | YES |
 | Block Producer Management | NO | NO | YES |
