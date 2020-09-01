@@ -42,7 +42,7 @@ function checkCommandUnzip() {
 
 function fetchCode() {
     mkdir -p $TMP_DIR
-    curl -sS $CODE_URL > $TMP_DIR/master.zip
+    curl -sSL $CODE_URL > $TMP_DIR/master.zip
     pushd $TMP_DIR
     $UNZIP master.zip
     popd
