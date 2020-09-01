@@ -41,8 +41,8 @@ function checkCommandUnzip() {
 }
 
 function fetchCode() {
-    curl -sS $downloadCode > $tmp_dir/master.zip
-    pushd $tmp_dir
+    curl -sS $CODE_URL > $TMP_DIR/master.zip
+    pushd $TMP_DIR
     $UNZIP master.zip
     popd
 }
