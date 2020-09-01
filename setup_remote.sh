@@ -56,7 +56,7 @@ function main() {
     
     fetchCode
 
-    pushd $tmp_dir/iotex-pantheon-master
+    pushd $TMP_DIR/iotex-pantheon-master
     ./setup.sh 
     popd
 }
