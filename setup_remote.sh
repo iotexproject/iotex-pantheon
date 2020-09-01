@@ -32,7 +32,7 @@ function checkDockerCompose() {
 }
 
 function checkCommandUnzip() {
-    unzip --version > /dev/null 2>&1
+    unzip -v > /dev/null 2>&1
     if [ $? -ne 0 ];then
 	echo -e "$RED unzip command not found $NC"
         echo -e "Please install it first"
