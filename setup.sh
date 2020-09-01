@@ -61,13 +61,12 @@ function checkDockerCompose() {
 }
 
 function setVar4Trial() {
-    IOTEX_IMAGE=iotex/iotex-core:trial
-    IOTEX_ELECTION_IMAGE=iotex/iotex-election:trail
-    IOTEX_ANALYTICS_IMAGE=iotex/iotex-analytics:trail
-    IOTEX_EXPLORER_IMAGE=iotex/iotex-explorer:trail
-    IOTEX_XUN_EXPLORER_IMAGE=iotex/xun-explorer:trial
-    IOTEX_HIGH_TABLE_IMAGE=iotex/high-table:trial
-    IOTEX_GOLDEN_GATE_IMAGE=iotex/golden-gate:trial
+    IOTEX_IMAGE=363205959602.dkr.ecr.us-east-1.amazonaws.com/iotex-core:latest
+    IOTEX_ELECTION_IMAGE=363205959602.dkr.ecr.us-east-1.amazonaws.com/iotex-election:latest
+    IOTEX_ANALYTICS_IMAGE=363205959602.dkr.ecr.us-east-1.amazonaws.com/iotex-analytics:latest
+    IOTEX_XUN_EXPLORER_IMAGE=363205959602.dkr.ecr.us-east-1.amazonaws.com/xun-explorer:latest
+    IOTEX_HIGH_TABLE_IMAGE=363205959602.dkr.ecr.us-east-1.amazonaws.com/high-table:latest
+    IOTEX_GOLDEN_GATE_IMAGE=363205959602.dkr.ecr.us-east-1.amazonaws.com/golden-gate:latest
 }
 
 function setVar() {
@@ -222,7 +221,7 @@ function pullTrialImages() {
 }
 
 function exportAll() {
-    export IOTEX_HOME DB_ROOT_PASSWORD IOTEX_IMAGE IOTEX_ELECTION_IMAGE IOTEX_ANALYTICS_IMAGE IOTEX_EXPLORER_IMAGE IOTEX_XUN_EXPLORER_IMAGE IOTEX_HIGH_TABLE_IMAGE IOTEX_GOLDEN_GATE_IMAGE IOTEX_VAULT_IMAGE IOTEX_ENVOY_IMAGE IOTEX_DB_IMAGE IOTEX_MONITOR_IMAGE
+    export IOTEX_HOME DB_ROOT_PASSWORD IOTEX_IMAGE IOTEX_ELECTION_IMAGE IOTEX_ANALYTICS_IMAGE IOTEX_XUN_EXPLORER_IMAGE IOTEX_HIGH_TABLE_IMAGE IOTEX_GOLDEN_GATE_IMAGE IOTEX_VAULT_IMAGE IOTEX_ENVOY_IMAGE IOTEX_DB_IMAGE IOTEX_MONITOR_IMAGE
 }
 
 function startup() {
