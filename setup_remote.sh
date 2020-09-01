@@ -1,6 +1,6 @@
 #!/bin/bash
 
-CODE_URL=""
+CODE_URL="https://github.com/iotexproject/iotex-pantheon/archive/master.zip"
 TMP_DIR="/tmp/.iotex/pantheon/"
 UNZIP="unzip"
 
