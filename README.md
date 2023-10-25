@@ -2,6 +2,12 @@
   <img src="https://github.com/iotexproject/iotex-pantheon/blob/master/logo.png" width="480px">
 </p>
 
+> **Warning**
+> This repo is not actively maintained.
+> Please check https://iotex.io for latest updates. 
+
+
+
 Pantheon is the consortium blockchain built with IoTeX technology. With the trial, The chain will be running on the standalone mode in this setup(one single node produce blocks).
 
 ## Usage:
